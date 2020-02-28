@@ -1,12 +1,23 @@
 Write-Host "Start Script"
 
-npm pack @azure/template
+try {
+    Write-Host "Start Try"
 
-npm publish azure-template-0.2.0-preview.3.tgz
-
-if ($LastExitCode -ne 0) {
-    Write-Host "npm publish failed with exit code $LastExitCode"
-    exit 1
+    Write-Host "npm pack @azure/template"
+    npm pack @azure/template
+    
+    Write-Host "npm publish azure-template-0.2.0-preview.3.tgz"
+    npm publish azure-template-0.2.0-preview.3.tgz
+    
+    if ($LastExitCode -ne 0) {
+        Write-Host "npm publish failed with exit code $LastExitCode"
+        exit 1
+    }
+    
+    Write-Host "End Try"
+}
+finally {
+    Write-Host "Finally"
 }
 
 Write-Host "End Script"
